@@ -68,9 +68,18 @@ public class AndroidTest {
         // get hamburger icon element
         WebElement hamburgerMenu = driver.findElement(AppiumBy.accessibilityId("open menu"));
 
+        // tab hamburger icon to open menu
+        tap(hamburgerMenu, driver);
+
+        // quit driver
+        driver.quit();
+    }
+
+    private void tap(WebElement element,AndroidDriver driver) {
+
         // tab to open hamburger menu
-        Point location = hamburgerMenu.getLocation();
-        Dimension size = hamburgerMenu.getSize();
+        Point location = element.getLocation();
+        Dimension size = element.getSize();
 
         // get centre of hamburger icon
         Point centreOfElement = getCentreOfElement(location, size);
@@ -84,8 +93,6 @@ public class AndroidTest {
 
         driver.perform(Collections.singleton(sequence));
 
-        // quit driver
-        driver.quit();
     }
 
     private Point getCentreOfElement(Point location, Dimension size) {
